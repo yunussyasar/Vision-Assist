@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSCameraUsageDescription</key>
+    <string>VisionAssist needs camera access to detect objects and help you find items.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>VisionAssist needs microphone access for voice commands to search for objects.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>VisionAssist uses speech recognition to understand your voice commands for finding objects.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>
+    </array>
+</dict>
+</plist>
