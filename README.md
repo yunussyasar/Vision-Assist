@@ -1,183 +1,183 @@
 # VisionAssist 👁️
 
-An iOS accessibility application designed for visually impaired users that provides **real-time object detection** with **voice-guided spatial feedback**.
+Görme engelli kullanıcılar için **gerçek zamanlı nesne tespiti** ve **sesli konumsal geri bildirim** sağlayan iOS erişilebilirlik uygulaması.
 
 ![Platform](https://img.shields.io/badge/Platform-iOS%2015.0+-blue)
 ![Swift](https://img.shields.io/badge/Swift-5.0-orange)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Lisans](https://img.shields.io/badge/Lisans-MIT-green)
 
-## 📱 Overview
+## 📱 Genel Bakış
 
-VisionAssist helps visually impaired users navigate their environment by detecting objects through the camera and providing audio feedback about what's around them. Users can search for specific objects using voice commands, and the app announces the object's location and distance using natural speech.
+VisionAssist, görme engelli kullanıcıların çevrelerindeki nesneleri kamera aracılığıyla tespit ederek sesli geri bildirim sağlar. Kullanıcılar sesli komutlarla belirli nesneleri arayabilir ve uygulama nesnenin konumunu ve mesafesini doğal konuşma ile duyurur.
 
 ### Demo
 
-| Feature | Description |
-|---------|-------------|
-| 🎤 Voice Search | Say "Find my phone" or "Where is the computer" |
-| 🔊 Audio Feedback | "Found Computer. It is on your left, nearby" |
-| 📳 Haptic Feedback | Vibration when target object is detected |
-| 👁️ Real-time Detection | Continuous object recognition from camera feed |
+| Özellik | Açıklama |
+|---------|----------|
+| 🎤 Sesli Arama | "Telefonumu bul" veya "Bilgisayar nerede" deyin |
+| 🔊 Sesli Geri Bildirim | "Bilgisayar bulundu. Solunuzda, yakında" |
+| 📳 Titreşim Geri Bildirimi | Hedef nesne tespit edildiğinde titreşim |
+| 👁️ Gerçek Zamanlı Tespit | Kamera görüntüsünden sürekli nesne tanıma |
 
-## ✨ Features
+## ✨ Özellikler
 
-- **Real-time Object Detection** - Uses Apple Vision Framework for continuous object recognition
-- **Voice Commands** - Hands-free object search using natural language
-- **Spatial Audio Feedback** - Announces object position (left/right/center) and distance
-- **Haptic Feedback** - Tactile notifications when objects are found
-- **Accessible UI** - Full VoiceOver support with proper accessibility labels
-- **Detection Smoothing** - Prevents UI flickering with intelligent frame processing
+- **Gerçek Zamanlı Nesne Tespiti** - Apple Vision Framework kullanarak sürekli nesne tanıma
+- **Sesli Komutlar** - Eller serbest nesne arama için doğal dil desteği
+- **Konumsal Ses Geri Bildirimi** - Nesne konumu (sol/sağ/merkez) ve mesafe duyurusu
+- **Dokunsal Geri Bildirim** - Nesne bulunduğunda titreşim bildirimi
+- **Erişilebilir Arayüz** - Tam VoiceOver desteği
+- **Tespit Yumuşatma** - Akıllı kare işleme ile UI titremesini önleme
 
-## 🛠️ Technologies
+## 🛠️ Teknolojiler
 
-| Technology | Purpose |
-|------------|---------|
-| **Swift & SwiftUI** | UI and application logic |
-| **Apple Vision Framework** | Object classification (VNClassifyImageRequest) |
-| **AVFoundation** | Camera capture and audio session management |
-| **Speech Framework** | Voice command recognition (SFSpeechRecognizer) |
-| **AVSpeechSynthesizer** | Text-to-speech for audio feedback |
-| **CoreML** | Machine learning model integration ready |
+| Teknoloji | Kullanım Amacı |
+|-----------|----------------|
+| **Swift & SwiftUI** | UI ve uygulama mantığı |
+| **Apple Vision Framework** | Nesne sınıflandırma (VNClassifyImageRequest) |
+| **AVFoundation** | Kamera yakalama ve ses oturumu yönetimi |
+| **Speech Framework** | Sesli komut tanıma (SFSpeechRecognizer) |
+| **AVSpeechSynthesizer** | Sesli geri bildirim için metin-konuşma dönüşümü |
+| **CoreML** | Makine öğrenimi modeli entegrasyonuna hazır |
 
-## 📋 Requirements
+## 📋 Gereksinimler
 
 - iOS 15.0+
 - Xcode 14.0+
-- Physical iOS device (camera required)
+- Fiziksel iOS cihazı (kamera gerekli)
 
-## 🚀 Installation
+## 🚀 Kurulum
 
-1. **Clone the repository**
+1. **Depoyu klonlayın**
    ```bash
    git clone https://github.com/yunussyasar/VisionAssist.git
    cd VisionAssist
    ```
 
-2. **Open in Xcode**
+2. **Xcode'da açın**
    ```bash
    open VisionAssist.xcodeproj
    ```
 
-3. **Configure signing**
-   - Select the project in Xcode
-   - Go to "Signing & Capabilities"
-   - Select your development team
+3. **İmzalamayı yapılandırın**
+   - Xcode'da projeyi seçin
+   - "Signing & Capabilities" bölümüne gidin
+   - Geliştirme takımınızı seçin
 
-4. **Build and run**
-   - Connect your iOS device
-   - Select your device as the target
-   - Press `Cmd + R` to build and run
+4. **Derleyin ve çalıştırın**
+   - iOS cihazınızı bağlayın
+   - Cihazınızı hedef olarak seçin
+   - `Cmd + R` ile derleyip çalıştırın
 
-## 📖 Usage
+## 📖 Kullanım
 
-### Basic Usage
+### Temel Kullanım
 
-1. **Launch the app** - Grant camera and microphone permissions when prompted
-2. **View detections** - Objects are automatically detected and shown on screen
-3. **Search for objects** - Tap the microphone button and say:
-   - "Find [object name]" (e.g., "Find my keys")
-   - "Where is [object]" (e.g., "Where is the laptop")
-   - "Look for [object]" (e.g., "Look for a chair")
+1. **Uygulamayı başlatın** - İstendiğinde kamera ve mikrofon izinlerini verin
+2. **Tespitleri görüntüleyin** - Nesneler otomatik olarak tespit edilir ve ekranda gösterilir
+3. **Nesne arayın** - Mikrofon butonuna dokunun ve söyleyin:
+   - "Find [nesne adı]" (örn: "Find my keys")
+   - "Where is [nesne]" (örn: "Where is the laptop")
+   - "Look for [nesne]" (örn: "Look for a chair")
 
-### Voice Commands
+### Sesli Komutlar
 
-| Command | Example |
-|---------|---------|
+| Komut | Örnek |
+|-------|-------|
 | Find | "Find my phone" |
 | Search | "Search for a bottle" |
 | Look for | "Look for the remote" |
 | Where is | "Where is my wallet" |
 | Locate | "Locate the door" |
-| Clear | "Clear" or "Cancel" to stop searching |
+| Clear | "Clear" veya "Cancel" aramayı durdurmak için |
 
-### Audio Feedback Examples
+### Sesli Geri Bildirim Örnekleri
 
-- **Object found:** *"Found Phone. It is on your left, nearby. 85 percent confident."*
-- **Object lost:** *"Phone is no longer visible. Move your camera around to find it."*
-- **Position updates:** *"Phone is now on your right"*
+- **Nesne bulundu:** *"Found Phone. It is on your left, nearby. 85 percent confident."*
+- **Nesne kayboldu:** *"Phone is no longer visible. Move your camera around to find it."*
+- **Konum güncellemesi:** *"Phone is now on your right"*
 
-## 🏗️ Architecture
+## 🏗️ Mimari
 
 ```
 VisionAssist/
-├── VisionAssistApp.swift      # App entry point
-├── ContentView.swift          # Main UI with camera preview
-├── ObjectDetector.swift       # Vision framework integration
-├── CameraManager.swift        # AVFoundation camera handling
-├── CameraPreview.swift        # SwiftUI camera view wrapper
-├── VoiceCommandManager.swift  # Speech recognition
-├── AudioFeedbackManager.swift # Text-to-speech feedback
-├── HapticFeedbackManager.swift# Haptic notifications
-└── Info.plist                 # App permissions
+├── VisionAssistApp.swift      # Uygulama giriş noktası
+├── ContentView.swift          # Kamera önizlemeli ana UI
+├── ObjectDetector.swift       # Vision framework entegrasyonu
+├── CameraManager.swift        # AVFoundation kamera yönetimi
+├── CameraPreview.swift        # SwiftUI kamera görünümü
+├── VoiceCommandManager.swift  # Konuşma tanıma
+├── AudioFeedbackManager.swift # Metin-konuşma çevirisi
+├── HapticFeedbackManager.swift# Dokunsal bildirimler
+└── Info.plist                 # Uygulama izinleri
 ```
 
-### Key Components
+### Ana Bileşenler
 
 #### ObjectDetector
-Handles real-time object detection using Apple's Vision framework. Features:
-- Frame skipping for performance (processes every 3rd frame)
-- Detection history smoothing (requires 60% consistency over 5 frames)
-- Automatic target tracking with state management
+Apple Vision framework kullanarak gerçek zamanlı nesne tespiti yapar:
+- Performans için kare atlama (her 3 kareden birini işler)
+- Tespit geçmişi yumuşatma (5 kare üzerinde %60 tutarlılık gerektirir)
+- Durum yönetimi ile otomatik hedef takibi
 
 #### VoiceCommandManager
-Manages speech recognition for hands-free operation:
-- Supports multiple trigger phrases
-- Extracts object names from natural language
-- Handles audio session switching between record and playback
+Eller serbest kullanım için konuşma tanımayı yönetir:
+- Birden fazla tetikleyici ifadeyi destekler
+- Doğal dilden nesne adlarını çıkarır
+- Kayıt ve oynatma arasında ses oturumu geçişini yönetir
 
 #### AudioFeedbackManager
-Provides voice feedback using AVSpeechSynthesizer:
-- Detailed position announcements (left/right, top/bottom, distance)
-- Debounced announcements to prevent repetition
-- Forced speaker output routing
+AVSpeechSynthesizer kullanarak sesli geri bildirim sağlar:
+- Detaylı konum duyuruları (sol/sağ, üst/alt, mesafe)
+- Tekrarlamayı önlemek için geciktirilmiş duyurular
+- Zorla hoparlör çıkışı yönlendirmesi
 
-## 🔒 Privacy & Permissions
+## 🔒 Gizlilik ve İzinler
 
-The app requires the following permissions (configured in Info.plist):
+Uygulama aşağıdaki izinleri gerektirir (Info.plist'te yapılandırılmış):
 
-| Permission | Reason |
-|------------|--------|
-| Camera | Object detection from live camera feed |
-| Microphone | Voice command recognition |
-| Speech Recognition | Converting speech to text for commands |
+| İzin | Sebep |
+|------|-------|
+| Kamera | Canlı kamera görüntüsünden nesne tespiti |
+| Mikrofon | Sesli komut tanıma |
+| Konuşma Tanıma | Komutlar için konuşmayı metne çevirme |
 
-## 🎯 Future Improvements
+## 🎯 Gelecek İyileştirmeler
 
-- [ ] Custom YOLO model integration for better object detection
-- [ ] Offline mode with on-device ML models
-- [ ] Object distance estimation using depth sensor
-- [ ] Multi-language support (Turkish, German, etc.)
-- [ ] Saved object presets for quick search
-- [ ] AR overlay showing object locations
+- [ ] Daha iyi nesne tespiti için özel YOLO modeli entegrasyonu
+- [ ] Cihaz üzerinde ML modelleri ile çevrimdışı mod
+- [ ] Derinlik sensörü kullanarak nesne mesafesi tahmini
+- [ ] Çoklu dil desteği (Türkçe, Almanca vb.)
+- [ ] Hızlı arama için kayıtlı nesne önayarları
+- [ ] Nesne konumlarını gösteren AR katmanı
 
-## 🤝 Contributing
+## 🤝 Katkıda Bulunma
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Katkılarınızı bekliyoruz! Lütfen Pull Request göndermekten çekinmeyin.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Depoyu fork'layın
+2. Feature branch'inizi oluşturun (`git checkout -b feature/HarikaOzellik`)
+3. Değişikliklerinizi commit'leyin (`git commit -m 'Harika bir özellik eklendi'`)
+4. Branch'e push'layın (`git push origin feature/HarikaOzellik`)
+5. Pull Request açın
 
-## 📄 License
+## 📄 Lisans
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Bu proje MIT Lisansı altında lisanslanmıştır - detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
-## 👨‍💻 Author
+## 👨‍💻 Geliştirici
 
 **Yunus Emre**
 
 - GitHub: [@yunussyasar](https://github.com/yunussyasar)
 
-## 🙏 Acknowledgments
+## 🙏 Teşekkürler
 
-- Apple Vision Framework documentation
-- SwiftUI accessibility guidelines
-- iOS Human Interface Guidelines for accessibility
+- Apple Vision Framework dokümantasyonu
+- SwiftUI erişilebilirlik rehberleri
+- Erişilebilirlik için iOS Human Interface Guidelines
 
 ---
 
 <p align="center">
-  Made with ❤️ for accessibility
+  Erişilebilirlik için ❤️ ile yapıldı
 </p>
