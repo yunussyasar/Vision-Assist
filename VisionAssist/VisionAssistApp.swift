@@ -1,11 +1,5 @@
-//
-//  VisionAssistApp.swift
-//  VisionAssist
-//
-//  Created by Yunus Emre Yaşar on 4.12.2025.
-//
-
 import SwiftUI
+import AVFoundation
 
 @main
 struct VisionAssistApp: App {
