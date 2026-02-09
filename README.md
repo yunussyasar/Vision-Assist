@@ -18,6 +18,7 @@ VisionAssist, görme engelli kullanıcıların çevrelerindeki nesneleri kamera 
 | 🔊 Sesli Geri Bildirim | "Bilgisayar bulundu. Solunuzda, yakında" |
 | 📳 Titreşim Geri Bildirimi | Hedef nesne tespit edildiğinde titreşim |
 | 👁️ Gerçek Zamanlı Tespit | Kamera görüntüsünden sürekli nesne tanıma |
+| ⚙️ Ayarlar Menüsü | Ses, titreşim, algılama ve görsel özelleştirme |
 
 ## ✨ Özellikler
 
@@ -27,6 +28,7 @@ VisionAssist, görme engelli kullanıcıların çevrelerindeki nesneleri kamera 
 - **Dokunsal Geri Bildirim** - Nesne bulunduğunda titreşim bildirimi
 - **Erişilebilir Arayüz** - Tam VoiceOver desteği
 - **Tespit Yumuşatma** - Akıllı kare işleme ile UI titremesini önleme
+- **Özelleştirilebilir Ayarlar** - Ses hızı/perdesi, titreşim yoğunluğu, güven eşiği, dil seçimi
 
 ## 🛠️ Teknolojiler
 
@@ -143,10 +145,10 @@ Uygulama aşağıdaki izinleri gerektirir (Info.plist'te yapılandırılmış):
 
 ## 🎯 Gelecek İyileştirmeler
 
-- [ ] Daha iyi nesne tespiti için özel YOLO modeli entegrasyonu
+- [x] Daha iyi nesne tespiti için özel YOLO modeli entegrasyonu
+- [x] Özelleştirilebilir ayarlar menüsü
 - [ ] Cihaz üzerinde ML modelleri ile çevrimdışı mod
 - [ ] Derinlik sensörü kullanarak nesne mesafesi tahmini
-- [ ] Çoklu dil desteği (Türkçe, Almanca vb.)
 - [ ] Hızlı arama için kayıtlı nesne önayarları
 - [ ] Nesne konumlarını gösteren AR katmanı
 
