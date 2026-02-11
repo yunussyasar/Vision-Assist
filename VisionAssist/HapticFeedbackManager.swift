@@ -35,6 +35,8 @@ class HapticFeedbackManager {
     
     /// Trigger success haptic when target object is found
     /// Includes debouncing to prevent continuous vibration
+    /// Trigger success haptic (double heavy impact)
+    /// Used when target object is found
     func triggerSuccessFeedback() {
         guard settings.hapticEnabled else { return }
         
@@ -45,23 +47,41 @@ class HapticFeedbackManager {
             return
         }
         
-        notificationGenerator.notificationOccurred(.success)
-        lastSuccessTime = now
+        // Pattern: Heavy impact, short pause, heavy impact
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.prepare()
+        generator.impactOccurred()
         
-        // Prepare for next use
-        notificationGenerator.prepare()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            generator.impactOccurred()
+        }
+        
+        lastSuccessTime = now
     }
     
-    /// Trigger warning haptic (e.g., object at edge of frame)
+    /// Trigger warning haptic (triple light impact)
+    /// Used for obstacles or edge detection
     func triggerWarningFeedback() {
         guard settings.hapticEnabled else { return }
-        notificationGenerator.notificationOccurred(.warning)
-        notificationGenerator.prepare()
+        
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            generator.impactOccurred()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            generator.impactOccurred()
+        }
     }
     
-    /// Trigger error haptic (e.g., voice command not recognized)
+    /// Trigger error haptic (long distinct vibration)
+    /// Used when command is not recognized or operation fails
     func triggerErrorFeedback() {
         guard settings.hapticEnabled else { return }
+        // UINotificationFeedbackGenerator.error is distinct enough (3 pulses)
         notificationGenerator.notificationOccurred(.error)
         notificationGenerator.prepare()
     }
@@ -74,6 +94,26 @@ class HapticFeedbackManager {
         generator.impactOccurred()
     }
     
+    /// Trigger distance-based feedback
+    /// Intensity increases as object gets closer (larger bounding box area)
+    func triggerDistanceFeedback(intensity: Float) {
+        guard settings.hapticEnabled else { return }
+        
+        // Map 0.0-1.0 intensity to feedback styles
+        let style: UIImpactFeedbackGenerator.FeedbackStyle
+        if intensity > 0.8 {
+            style = .heavy
+        } else if intensity > 0.4 {
+            style = .medium
+        } else {
+            style = .light
+        }
+        
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.prepare()
+        generator.impactOccurred()
+    }
+
     /// Trigger selection feedback for UI element changes
     func triggerSelectionFeedback() {
         guard settings.hapticEnabled else { return }

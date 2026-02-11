@@ -107,8 +107,7 @@ class AudioFeedbackManager: NSObject, AVSpeechSynthesizerDelegate {
             announcement = "\(object.label) şimdi \(position)"
         }
         
-        speak(text: announcement)
-        lastAnnouncementTimes[object.label] = Date()
+        speak(text: announcement, priority: isFirstFind ? .urgent : .normal)
     }
     
     /// Announces that target object is no longer visible
@@ -120,7 +119,7 @@ class AudioFeedbackManager: NSObject, AVSpeechSynthesizerDelegate {
             return
         }
         
-        speak(text: "\(objectLabel) artık görünmüyor. Bulmak için kameranızı hareket ettirin.")
+        speak(text: "\(objectLabel) artık görünmüyor. Bulmak için kameranızı hareket ettirin.", priority: .normal)
         lastAnnouncementTimes["lost_\(objectLabel)"] = now
     }
     
@@ -134,7 +133,7 @@ class AudioFeedbackManager: NSObject, AVSpeechSynthesizerDelegate {
         let position = getDetailedPosition(boundingBox: object.boundingBox)
         let text = "\(object.label), \(position)"
         
-        speak(text: text)
+        speak(text: text, priority: .low)
         lastAnnouncementTimes[object.label] = now
     }
     
@@ -203,9 +202,9 @@ class AudioFeedbackManager: NSObject, AVSpeechSynthesizerDelegate {
         hasAnnouncedTargetFound = false
         
         if let target = target {
-            speak(text: "\(target) aranıyor")
+            speak(text: "\(target) aranıyor", priority: .urgent)
         } else {
-            speak(text: "Arama temizlendi")
+            speak(text: "Arama temizlendi", priority: .urgent)
         }
     }
     
@@ -224,22 +223,48 @@ class AudioFeedbackManager: NSObject, AVSpeechSynthesizerDelegate {
     
     // MARK: - Speech
     
-    private func speak(text: String) {
+    // MARK: - Priority System
+    
+    enum AnnouncementPriority: Int, Comparable {
+        case low = 0      // Background info (e.g., general object detection)
+        case normal = 1   // Standard updates (e.g., target tracking)
+        case urgent = 2   // Critical alerts (e.g., target found, errors)
+        
+        static func < (lhs: AnnouncementPriority, rhs: AnnouncementPriority) -> Bool {
+            return lhs.rawValue < rhs.rawValue
+        }
+    }
+    
+    private var currentPriority: AnnouncementPriority = .low
+    
+    // MARK: - Speech
+    
+    private func speak(text: String, priority: AnnouncementPriority = .normal) {
         // Check if audio is enabled in settings
         guard settings.audioEnabled else {
             print("🔇 Audio disabled in settings, skipping speech")
             return
         }
         
-        print("🎤 Attempting to speak: \(text)")
+        // Priority Handling
+        if synthesizer.isSpeaking {
+            // If new message is higher priority, stop current and speak new
+            if priority > currentPriority {
+                print("⚠️ Interrupting current speech for higher priority: \(priority)")
+                synthesizer.stopSpeaking(at: .immediate)
+            } 
+            // If new message is same or lower priority, skip it (for real-time updates)
+            else {
+                print("🚫 Skipping speech (lower/same priority): \(text)")
+                return
+            }
+        }
+        
+        print("🎤 Attempting to speak: \(text) (Priority: \(priority))")
+        currentPriority = priority
         
         // Force audio to speaker before speaking
         forceAudioToSpeaker()
-        
-        // Stop any current speech
-        if synthesizer.isSpeaking {
-            synthesizer.stopSpeaking(at: .word)
-        }
         
         let utterance = AVSpeechUtterance(string: text)
         
@@ -274,6 +299,6 @@ class AudioFeedbackManager: NSObject, AVSpeechSynthesizerDelegate {
     
     /// Test method to verify audio is working
     func testSpeak() {
-        speak(text: "Ses testi. Bu sesi duyuyorsanız, ses çalışıyor.")
+        speak(text: "Ses testi. Bu sesi duyuyorsanız, ses çalışıyor.", priority: .urgent)
     }
 }
